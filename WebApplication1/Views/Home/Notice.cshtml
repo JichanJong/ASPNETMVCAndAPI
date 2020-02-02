@@ -1,0 +1,7 @@
+﻿@using WebApplication1.Infrastructure;
+@{
+    ViewBag.Title = "公告";
+}
+
+<h2>这是公告</h2>
+@Html.UlListHtmlString((string[])ViewBag.ListNotice, null)

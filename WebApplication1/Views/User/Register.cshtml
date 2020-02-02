@@ -1,0 +1,41 @@
+﻿@model WebApplication1.Models.RegisterModel
+@{
+    ViewBag.Title = "用户注册";
+}
+@section headers
+{
+    <style type="text/css">
+        .regUl li { list-style-type: none;text-align: center;}
+        .regUl li label{ padding: 5px;width: 80px;}
+    </style>
+}
+<h2>用户注册</h2>
+<ul class="regUl">
+    <li><label for="username">用户名</label><input type="text" id="username" /></li>
+    <li><label for="password">密 码</label><input type="password" id="password"/></li>
+    <li><input type="button" value="注册" id="btnRegister"/></li>
+</ul>
+@section scripts
+{
+    <script type="text/javascript">
+        $("#btnRegister").click(function() {
+            var username = $("#username").val();
+            var password = $("#password").val();
+            var formData =
+            {
+                '@Html.DisplayNameFor(m => m.UserName)': username,
+                '@Html.DisplayNameFor(m => m.Password)': password
+            };
+            $.ajax({
+                url: '@Url.Action("Register")',
+                type: 'POST',
+                data: JSON.stringify(formData),
+                contentType: 'application/json;charset=utf-8',
+                success: function(data) {
+                    console.log(data);
+                }
+            });
+        });
+    </script>
+}
+
